@@ -1,0 +1,234 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Kitten api",
+    "description": "This is a Kitten API based on the OpenAPI 3.0 specification.  ",
+    "contact": {
+      "email": "clintonwambugu@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://django-kittend-rf-production.up.railway.app/",
+      "description": "Production server (uses live data)"
+    },
+    {
+      "url": "http://127.0.0.1:8000/",
+      "description": "localhost server (uses test data)"
+    }
+  ],
+  "tags": [
+    {
+      "name": "kitten",
+      "description": "Everything about your Kittens",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://github.com/Clinton-dev/django-kittend-rf"
+      }
+    }
+  ],
+  "paths": {
+    "/kittens/": {
+      "post": {
+        "tags": [
+          "kittens"
+        ],
+        "summary": "Add a new kitten to database",
+        "description": "Add a new kitten to the store",
+        "operationId": "addKitten",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Kitten"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Kitten"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Kitten"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/kittens/{id}": {
+      "put": {
+        "tags": [
+          "kittens"
+        ],
+        "summary": "Update an existing Kitten",
+        "description": "Update an existing kitten by Id",
+        "operationId": "updatePet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Numeric ID of the user to get"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Kitten"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Kitten"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Kitten not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "kittens"
+        ],
+        "summary": "Finds kitten by id",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "findPetsByStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Status values that need to be considered for filter",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "default": "available",
+              "enum": [
+                "available",
+                "pending",
+                "sold"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Kitten"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Kitten"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "kittens"
+        ],
+        "summary": "Deletes a kitten",
+        "description": "delete a kitten",
+        "operationId": "deleteKitten",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Pet id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Kitten deleted"
+          },
+          "400": {
+            "description": "Invalid pet value"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Kitten": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cuteness": {
+            "type": "boolean"
+          },
+          "softness": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
