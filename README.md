@@ -21,6 +21,7 @@ Django and django rest framework is used in the creation of the application.
 
 ##### Setup Instructions and Installation
 - Django requires Python and you can install python for your specific operating system by following this documentation [Python download](https://www.python.org/downloads/)
+- Installation guide for virtualenv [virtualenv docs](https://virtualenv.pypa.io/en/latest/installation.html)
 - Clone this repository to your computer. `git clone https://github.com/Clinton-dev/django-kittend-rf.git kitten-drf`
 - Open terminal command line then navigate to the root folder `cd kitten-drf`
 - Create virtual environment using `virtualenv venv` and activate it with `source venv/bin/activate`
