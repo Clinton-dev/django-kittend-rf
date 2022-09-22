@@ -17,6 +17,7 @@ Django and django rest framework is used in the creation of the application.
 - Python3.8.10
 - Django rest framework
 - Django
+- Swagger
 
 ##### Setup Instructions and Installation
 - Django requires Python and you can install python for your specific operating system by following this documentation [Python download](https://www.python.org/downloads/)
@@ -26,6 +27,9 @@ Django and django rest framework is used in the creation of the application.
 - While in root folder(kitten-drf) install dependancies using `pip install -r requirements.txt'
 - Run `python manage.py runserver`
 
+## Live documentation
+
+Here is the link to the live swagger API documentation [Kitten api v1.0.11](https://app.swaggerhub.com/apis/gidvbyuekhfvdzgvwj/kitten-api/1.0.11)
 
 ### Copyright & Licence Info
 MIT Copyright (c) 2022 Clinton Wambugu
